@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:latihaneric/views/add_product.dart';
 import 'package:latihaneric/views/home.dart';
 
 class Routes {
@@ -8,6 +9,10 @@ class Routes {
     GetPage(
       name: HomePage.routeName,
       page: () => HomePage(),
+    ),
+    GetPage(
+      name: AddProductPage.routeName,
+      page: () => AddProductPage(),
     ),
   ];
 }

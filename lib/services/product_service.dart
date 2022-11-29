@@ -12,7 +12,7 @@ class ProductService extends GetConnect {
 
   Future<List<ProductModel?>?> getListProduct() async {
     try {
-      Response? json = await get("https://fakestoreapi.com/products?limit=9");
+      Response? json = await get("https://fakestoreapi.com/products?limit=3");
       List<ProductModel?>? response = [];
       if (json.statusCode == 200) {
         var rawData = json.body;

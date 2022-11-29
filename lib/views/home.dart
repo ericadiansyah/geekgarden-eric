@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:latihaneric/controllers/product_controller.dart';
+import 'package:latihaneric/views/add_product.dart';
 import 'package:latihaneric/views/widget/list_product.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,6 +22,12 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : WidgetListProduct(listProduct: productC.listProduct),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(AddProductPage.routeName);
+        },
+        child: Icon(Icons.add),
       ),
     );
   }
