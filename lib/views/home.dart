@@ -15,6 +15,14 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.toNamed(AddProductPage.routeName);
+            },
+            icon: Icon(Icons.add_to_photos_sharp),
+          )
+        ],
       ),
       body: Obx(
         () => productC.isLoading.value
@@ -22,12 +30,6 @@ class HomePage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : WidgetListProduct(listProduct: productC.listProduct),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.toNamed(AddProductPage.routeName);
-        },
-        child: Icon(Icons.add),
       ),
     );
   }

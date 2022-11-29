@@ -12,7 +12,7 @@ class ProductController extends GetxController {
   TextEditingController? urlC = TextEditingController();
 
   var listProduct = <ProductModel?>[].obs;
-  ProductModel? detailProduct;
+  ProductModel? detailProduct = Get.arguments;
 
   var isLoading = false.obs;
 
@@ -42,8 +42,7 @@ class ProductController extends GetxController {
         category: "men's clothing",
         description: descC!.text,
         price: double.parse(priceC!.text),
-        image:
-            'https://www.pngkey.com/png/detail/252-2523419_vans-shoes-png-model-sepatu-sekolah-sekarang.png',
+        image: urlC!.text,
       ));
       titleC!.text = '';
       descC!.text = '';
@@ -71,9 +70,41 @@ class ProductController extends GetxController {
     }
   }
 
+  Future updateProduct(int id) async {
+    isLoading.value = true;
+
+    try {
+      listProduct.forEach((element) {
+        if (element!.id == id) {
+          element.title = titleC!.text;
+          element.description = descC!.text;
+          element.price = double.parse(priceC!.text);
+          element.image = urlC!.text;
+        }
+      });
+
+      titleC!.text = '';
+      descC!.text = '';
+      priceC!.text = '';
+      urlC!.text = '';
+
+      isLoading.value = false;
+      Get.back();
+      update();
+    } catch (ex) {
+      isLoading.value = false;
+    }
+  }
+
   @override
   void onInit() {
     getProduct();
+    if (Get.arguments != null) {
+      titleC!.text = detailProduct!.title!;
+      descC!.text = detailProduct!.description!;
+      priceC!.text = detailProduct!.price.toString();
+    }
+
     super.onInit();
   }
 
