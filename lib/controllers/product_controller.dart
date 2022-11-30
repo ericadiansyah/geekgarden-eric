@@ -99,11 +99,6 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     getProduct();
-    if (Get.arguments != null) {
-      titleC!.text = detailProduct!.title!;
-      descC!.text = detailProduct!.description!;
-      priceC!.text = detailProduct!.price.toString();
-    }
 
     super.onInit();
   }
